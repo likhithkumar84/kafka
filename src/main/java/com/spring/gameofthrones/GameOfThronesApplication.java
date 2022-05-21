@@ -10,7 +10,7 @@ public class GameOfThronesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GameOfThronesApplication.class, args);
-		log.info("Hello World");
+
 	}
 
 }
