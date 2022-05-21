@@ -14,10 +14,13 @@
 	<packaging>war</packaging>
 	<name>GameOfThrones</name>
 	<description>Demo project for Spring Boot</description>
+
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 	</properties>
+
 	<dependencyManagement>
+
 		<dependencies>
 			<dependency><!-- Import dependency management from Spring Boot -->
 				<groupId>org.springframework.boot</groupId>
@@ -27,8 +30,11 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
+
 	</dependencyManagement>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -69,10 +75,24 @@
 			<artifactId>liquibase-core</artifactId>
 			<version>4.10.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -96,7 +116,7 @@
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
-					<!-- attached to Maven test phase -->
+
 					<execution>
 						<id>report</id>
 						<phase>test</phase>
@@ -109,6 +129,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 
