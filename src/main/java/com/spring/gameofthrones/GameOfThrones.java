@@ -6,11 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Slf4j
-public class GameOfThronesApplication {
+public class GameOfThrones {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GameOfThronesApplication.class, args);
-
+		SpringApplication.run(GameOfThrones.class, args);
 	}
 
 }
