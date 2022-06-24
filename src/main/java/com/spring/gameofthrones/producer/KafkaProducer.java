@@ -13,10 +13,10 @@ import java.util.UUID;
 public class KafkaProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
-    public static final   String KAFKA_TOPIC = "GAME.OF.THRONES";
 
-    public void send(String message) {
-        String uuidAsString = UUID.randomUUID().toString();
-        kafkaTemplate.send(KAFKA_TOPIC,uuidAsString, message);
+    public void send(String topic, String message) {
+
+        String uuid = UUID.randomUUID().toString();
+        kafkaTemplate.send(topic, uuid, message);
     }
 }

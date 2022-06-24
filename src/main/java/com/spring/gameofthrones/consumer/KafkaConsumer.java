@@ -1,18 +1,28 @@
 package com.spring.gameofthrones.consumer;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.gameofthrones.pojo.TaskStatus;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import static com.spring.gameofthrones.producer.KafkaProducer.KAFKA_TOPIC;
+import static com.spring.gameofthrones.controller.MainController.KAFKA_TOPIC;
 
 @Slf4j
 @Component
+@AllArgsConstructor
 public class KafkaConsumer {
 
+    ObjectMapper mapper;
+
     @KafkaListener(topics = KAFKA_TOPIC, groupId = "consumerRecord")
-    public void getConsumer(ConsumerRecord<String,String> consumerRecord){
-        log.info("Message: " + consumerRecord.value());
+    public void getConsumer(ConsumerRecord<String, String> consumerRecord) throws JsonProcessingException {
+
+        log.info(String.format("Consumer Record : %s", consumerRecord.value()));
+        TaskStatus user = mapper.readValue(consumerRecord.value(), TaskStatus.class);
+        log.info(String.format("Task Status : %s", user.toString()));
     }
 }

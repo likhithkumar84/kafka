@@ -1,5 +1,8 @@
 package com.spring.gameofthrones.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.gameofthrones.pojo.TaskStatus;
 import com.spring.gameofthrones.producer.KafkaProducer;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class MainController {
 
+    public static final String KAFKA_TOPIC = "GAME.OF.THRONES";
     KafkaProducer kafkaProducer;
+    ObjectMapper mapper;
 
     @PostMapping("gameOfThrones")
-    public ResponseEntity<String> gameOfThrones(@RequestBody Object message) {
+    public ResponseEntity<String> gameOfThrones(@RequestBody TaskStatus taskStatus) throws JsonProcessingException {
 
-        kafkaProducer.send(message.toString());
+        String message = mapper.writeValueAsString(taskStatus);
+        kafkaProducer.send(KAFKA_TOPIC, message);
+
         return ResponseEntity.ok("Sent Message to Kafka");
     }
 }
