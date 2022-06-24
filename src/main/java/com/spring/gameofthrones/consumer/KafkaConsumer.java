@@ -11,7 +11,7 @@ import static com.spring.gameofthrones.producer.KafkaProducer.KAFKA_TOPIC;
 @Component
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "my-first-topic", groupId = "consumerRecord")
+    @KafkaListener(topics = KAFKA_TOPIC, groupId = "consumerRecord")
     public void getConsumer(ConsumerRecord<String,String> consumerRecord){
         log.info("Message: " + consumerRecord.value());
     }
