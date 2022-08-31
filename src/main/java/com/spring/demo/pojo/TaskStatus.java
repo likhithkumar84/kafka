@@ -1,4 +1,4 @@
-package com.spring.gameofthrones.pojo;
+package com.spring.demo.pojo;
 
 import lombok.Data;
 

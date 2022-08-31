@@ -1,9 +1,9 @@
-package com.spring.gameofthrones.controller;
+package com.spring.demo.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spring.gameofthrones.pojo.TaskStatus;
-import com.spring.gameofthrones.producer.KafkaProducer;
+import com.spring.demo.pojo.TaskStatus;
+import com.spring.demo.producer.KafkaProducer;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
-package com.spring.gameofthrones;
+package com.spring.demo;
 
 import org.junit.jupiter.api.Test;
 
-class GameOfThronesApplicationTests {
+class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {

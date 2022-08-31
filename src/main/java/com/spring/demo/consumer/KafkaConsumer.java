@@ -1,15 +1,15 @@
-package com.spring.gameofthrones.consumer;
+package com.spring.demo.consumer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spring.gameofthrones.pojo.TaskStatus;
+import com.spring.demo.pojo.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import static com.spring.gameofthrones.controller.MainController.KAFKA_TOPIC;
+import static com.spring.demo.controller.MainController.KAFKA_TOPIC;
 
 @Slf4j
 @Component
