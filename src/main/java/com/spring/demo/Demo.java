@@ -59,13 +59,13 @@ public class Demo {
                 .withSecond(on(0))
                 .instance();
 
-        log.info("Cron: {}", cron.asString());
+        log.info("Cron -> {}", cron.asString());
         CronDescriptor descriptor = CronDescriptor.instance(Locale.UK);
         String description = descriptor.describe(parser.parse(cron.asString()));
-        log.info("Describe Cron {}", description);
+        log.info("Describe Cron -> {}", description);
         Optional<ZonedDateTime> date = ExecutionTime.forCron(cron).nextExecution(ZonedDateTime.now(TimeZone.getTimeZone("Asia/Kolkata").toZoneId()));
         Date instant = Date.from(Instant.from(date.orElseThrow(() -> new DateTimeException("Invalid")).toInstant()));
-        log.info("Instant: {}", instant);
+        log.info("Instant -> {}", instant);
     }
 
     private static String getZonedDate(String timeZone) {
