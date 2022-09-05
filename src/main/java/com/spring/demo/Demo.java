@@ -43,7 +43,7 @@ public class Demo {
         List<String> cronParams = new ArrayList<>(Arrays.asList(cronExpression.split(" ")));
         cronParams.set(0, String.valueOf(0));
         cronParams.set(1, String.valueOf(30));
-        cronParams.set(2, String.valueOf(12));
+        cronParams.set(2, String.valueOf(01));
         cronExpression = String.join(" ", cronParams);
         log.info("cron expression: " + cronExpression);
 
@@ -51,10 +51,10 @@ public class Demo {
         CronParser parser = new CronParser(cronDefinition);
         Cron cron = CronBuilder.cron(cronDefinition)
                 .withYear(always())
-                .withDoW(on(2).and(on(4)).and(on(6)))
-                .withMonth(always())
-                .withDoM(questionMark())
-                .withHour(on(12))
+                .withDoW(questionMark())
+                .withMonth(on(11))
+                .withDoM(on(30))
+                .withHour(on(0))
                 .withMinute(on(0))
                 .withSecond(on(0))
                 .instance();
@@ -63,9 +63,10 @@ public class Demo {
         CronDescriptor descriptor = CronDescriptor.instance(Locale.UK);
         String description = descriptor.describe(parser.parse(cron.asString()));
         log.info("Describe Cron -> {}", description);
-        Optional<ZonedDateTime> date = ExecutionTime.forCron(cron).nextExecution(ZonedDateTime.now(TimeZone.getTimeZone("Asia/Kolkata").toZoneId()));
-        Date instant = Date.from(Instant.from(date.orElseThrow(() -> new DateTimeException("Invalid")).toInstant()));
-        log.info("Instant -> {}", instant);
+        Optional<ZonedDateTime> date = ExecutionTime.forCron(cron)
+                .nextExecution(ZonedDateTime.now(TimeZone.getTimeZone("Cuba").toZoneId()));
+        Instant instant = date.orElseThrow(() -> new DateTimeException("Invalid Time")).toInstant();
+        log.info("Instant -> {}", instant.truncatedTo(ChronoUnit.SECONDS));
     }
 
     private static String getZonedDate(String timeZone) {
